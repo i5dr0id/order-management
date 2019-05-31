@@ -1,0 +1,19 @@
+{
+  "name": "order-management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "cd backend && npm run dev & cd frontend && yarn serve",
+		"install-all": "cd backend && npm install & cd frontend && yarn",
+		"lint:fix":"cd backend && npm run lint:fix & cd frontend && yarn lint"
+	},
+	"repository": {
+    "type": "git",
+    "url": "git+https://github.com/israelugbodaga/order-management.git"
+  },
+  "keywords": [],
+  "author": "Ugbodaga Israel",
+  "license": "ISC"
+}
