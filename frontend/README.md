@@ -1,4 +1,4 @@
-# client
+# Order Management Client
 
 ## Project setup
 ```

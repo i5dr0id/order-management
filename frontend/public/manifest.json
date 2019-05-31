@@ -1,6 +1,6 @@
 {
-  "name": "client",
-  "short_name": "client",
+  "name": "Order Management",
+  "short_name": "Order Management",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
