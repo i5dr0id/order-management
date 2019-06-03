@@ -7,16 +7,16 @@
   <input type="text" class="form-control" id="email" placeholder="email"> </input>
   </div>
    <div class="form-group">
-  <label for="email"> Password: </label>
-  <input type="password" class="form-control" id="email" placeholder="password"> </input>
+  <label for="password"> Password: </label>
+  <input type="password" class="form-control" id="password" placeholder="password"> </input>
   </div>
    <div class="form-group">
    <button type="submit" class="btn btn-primary w-100">Login</button>
   </div>
   </form>
-      <p class="text-center"> 
+      <p class="text-center">
         <router-link to="/register">
-          Register
+          Create new account
         </router-link>
          </p>
 </div>

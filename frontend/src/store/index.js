@@ -21,7 +21,7 @@ const vuexPersist = new VuexPersist({
 });
 
 export default new Vuex.Store({
-  namespaced: true,
+  // namespaced: true,
   plugins: [vuexPersist.plugin],
   modules: {
     user,
@@ -43,3 +43,4 @@ export default new Vuex.Store({
     },
   },
 });
+

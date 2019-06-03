@@ -4,19 +4,18 @@ const HomeBase = () => import('@/views/HomeBase');
 
 export default {
   path: '/',
-  name: 'home',
   component: HomeBase,
   children: [
     {
-      path:'/',
-      name:'login',
-      component: Auth
+      path: '/',
+      name: 'login',
+      component: Auth,
     },
     {
-      path:'register',
-      name:'register',
-      component: Register
-    }
+      path: 'register',
+      name: 'register',
+      component: Register,
+    },
   ],
   meta: {
     rule: '*',
