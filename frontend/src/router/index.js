@@ -4,7 +4,7 @@ import auth from './auth';
 import about from './about';
 import error from './error';
 
-import product from './product';
+import products from './products';
 
 const AppBase = () => import('@/views/AppBase');
 
@@ -16,10 +16,11 @@ export default new Router({
     auth,
     about,
     error,
-    {
-      path: '/app',
-      component: AppBase,
-      children: [product],
-    },
+    products,
+    // {
+    //   path: '/app',
+    //   component: AppBase,
+    //   children: [product],
+    // },
   ],
 });

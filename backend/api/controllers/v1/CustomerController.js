@@ -19,7 +19,8 @@ module.exports = {
         fullname: Joi.string().required(),
         email: Joi.string().required().email(),
         password: Joi.string().required(),
-        phone: Joi.string().trim().regex(/^[0-9]{11,12}$/).required()
+        phone: Joi.string().required()
+        // phone: Joi.string().trim().regex(/^[0-9]{11,12}$/).required()
       });
 
       // validate values from request body
@@ -35,6 +36,12 @@ module.exports = {
         password: encryptedPassword,
         phone
       }).fetch();
+
+      //remove password
+      delete customer.password
+
+      customer.token = JWTService.issuer({customerID: customer.id}, '10 days');
+
 
       // send response
       return res.json({
@@ -74,13 +81,12 @@ module.exports = {
         return res.badRequest({err: 'unauthorized'});
       }
 
-      const token = JWTService.issuer({customerID: customer.id}, '10 days');
+      customer.token = JWTService.issuer({customerID: customer.id}, '10 days');
       delete customer.password;
 
       return res.json({
         message: 'Customer Login successful',
-        customer,
-        token
+        customer
       });
     } catch (err) {
       if (err.name === 'ValidationError') {

@@ -1,5 +1,5 @@
 export default {
   isLoggedIn: false,
-  token: '',
-  currentUser: '',
+  userToken: null,
+  currentUser: null,
 };

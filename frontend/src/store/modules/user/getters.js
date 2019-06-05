@@ -1,5 +1,5 @@
 export default {
-  getUserToken: ({commit, state}) => {
-// return state.token
-  }
+  getUserToken: state => state.userToken,
+  getUserDetail: state => state.currentUser,
+  getUserIsLoggedIn: state => state.isLoggedIn,
 };

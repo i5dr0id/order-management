@@ -6,5 +6,5 @@ export const HTTP_VERBS = {
   DELETE: 'delete',
 };
 
-export const CUSTOMER_LOGIN = 'login';
-export const CUSTOMER_REGISTER = 'register';
+export const CUSTOMER_LOGIN = 'customer/login';
+export const CUSTOMER_REGISTER = 'customer/register';
