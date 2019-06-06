@@ -19,8 +19,8 @@ module.exports.routes = {
   'POST /api/v1/customer/login' : 'v1/CustomerController.login',
 
   // Products
-  'GET /api/v1/admin/products' : 'v1/ProductController.index',
-  'POST /api/v1/admin/product' : 'v1/ProductController.create',
+  'GET /api/v1/products' : 'v1/ProductController.index',
+  'POST /api/v1/product' : 'v1/ProductController.create',
 
   // Orders
   'POST /api/v1/customer/order' : 'v1/OrderController.create',

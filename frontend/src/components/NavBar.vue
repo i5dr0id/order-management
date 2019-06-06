@@ -36,9 +36,9 @@ export default {
     ...mapActions('user', ['ASYNC_LOGOUT_CUSTOMER_ACCOUNT']),
 
     btnLogout() {
-      this.ASYNC_LOGOUT_CUSTOMER_ACCOUNT()
-      this.$router.push('/')
-    }
+      this.ASYNC_LOGOUT_CUSTOMER_ACCOUNT();
+      this.$router.push('/');
+    },
   },
 };
 </script>

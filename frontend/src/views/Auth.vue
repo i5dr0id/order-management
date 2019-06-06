@@ -22,32 +22,33 @@
   </div>
 </template>
 <script>
-  import {
-    mapActions
-  } from 'vuex';
-  export default {
-    data() {
-      return {
-        customerLoginForm: {
-          email: '',
-          password: '',
-        },
-      };
-    },
-    methods: {
-      ...mapActions('user', ['ASYNC_LOGIN_CUSTOMER_ACCOUNT']),
-      handleSubmit() {
-        console.log(this.customerLoginForm);
-        this.ASYNC_LOGIN_CUSTOMER_ACCOUNT(this.customerLoginForm).then((res) => {
-          this.$router.push('/products');
-        }).catch((err) => {
-          console.log({
-            err
-          });
-        });
+import {
+  mapActions,
+} from 'vuex';
+
+export default {
+  data() {
+    return {
+      customerLoginForm: {
+        email: '',
+        password: '',
       },
+    };
+  },
+  methods: {
+    ...mapActions('user', ['ASYNC_LOGIN_CUSTOMER_ACCOUNT']),
+    handleSubmit() {
+      console.log(this.customerLoginForm);
+      this.ASYNC_LOGIN_CUSTOMER_ACCOUNT(this.customerLoginForm).then((res) => {
+        this.$router.push('/products');
+      }).catch((err) => {
+        console.log({
+          err,
+        });
+      });
     },
-  };
+  },
+};
 
 </script>
 <style scoped>

@@ -1,0 +1,38 @@
+[
+	{
+	"name": "Apple IPhone X",
+	"price": "268000",
+	"imageurl": "https://ng.jumia.is/LgqEH7rD-oeaRnobkXI_bAOUJbQ=/fit-in/220x220/filters:fill(white):sharpen(1,0,false):quality(100)/product/68/061261/1.jpg?5590",
+	"description": "IPhone X 5.8-Inches Super AMOLED (3GB RAM, 64GB ROM) IOS 11.1.1, (12MP + 12MP) + 7MP 4G LTE Smartphone - Silver"
+},
+{
+	"name": "Galaxy A30",
+	"price": "69500",
+	"imageurl": "https://ng.jumia.is/oV4hCOxxIQEIXLHEdxAxrxttC_s=/fit-in/220x220/filters:fill(white):sharpen(1,0,false):quality(100)/product/15/997013/1.jpg?4139",
+	"description": "Samsung Galaxy A30 6.4-Inch (4GB RAM, 64GB ROM) Android 9.0 Pie, (16MP + 5MP) + 16MP 4G LTE Dual SIM Smartphone - Black"
+},
+{
+	"name": "New P35 PRO",
+	"price": "33700",
+	"imageurl": "https://ng.jumia.is/Ra99fiAPp2Eqr6lXbAi_w2MLO2Q=/fit-in/220x220/filters:fill(white):sharpen(1,0,false):quality(100)/product/71/077433/1.jpg?1944",
+	"description": "Generic New P35 PRO 6.3 Smart Phone Android OS 9.1 System 6G RAM+128GB ROM Face Recognition Smartphone Dual SIM-Black"
+},
+{
+	"name": "Galaxy S10 Plus",
+	"price": "267900",
+	"imageurl": "https://ng.jumia.is/5TYHAU_6F2W4sdhtQvTVYNUcZoI=/fit-in/220x220/filters:fill(white):sharpen(1,0,false):quality(100)/product/69/537703/1.jpg?2016",
+	"description": "Samsung Galaxy S10 Plus (S10+) 6.4-Inch AMOLED (8GB,128GB ROM) Android 9.0 Pie, 12MP + 12MP + 16MP Dual SIM 4G Smartphone"
+},
+{
+	"name": "Redmi Note 7",
+	"price": "69800",
+	"imageurl": "https://ng.jumia.is/9UhgwgNKYQliScOquGjjC8q66Uc=/fit-in/220x220/filters:fill(white):sharpen(1,0,false):quality(100)/product/49/706523/1.jpg?6154",
+	"description": "Redmi Note 7,48MP Camera, 4GB+64GB, Dual AI Back Cameras, Face & Fingerprint Identification (Black)"
+},
+{
+	"name": "X21 Smart Phone",
+	"price": "29099",
+	"imageurl": "https://ng.jumia.is/JTakLgFbmNQslsXChtoDXOVgDJ4=/fit-in/220x220/filters:fill(white):sharpen(1,0,false):quality(100)/product/77/146523/1.jpg?8421",
+	"description": "Generic X21 Smart Phone 6.2-Inch (4GB RAM+64GG ROM) Android 8.1 (8MP+16MP) Dual-SIM 3G Smartphone-Blue"
+}
+]

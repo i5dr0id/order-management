@@ -8,3 +8,4 @@ export const HTTP_VERBS = {
 
 export const CUSTOMER_LOGIN = 'customer/login';
 export const CUSTOMER_REGISTER = 'customer/register';
+export const PRODUCTS = 'products';
