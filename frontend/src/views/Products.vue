@@ -2,9 +2,16 @@
   <div>
     <NavBar/>
     <b-container>
-      <b-row class="mt-4">
+
+      <b-row class="mt-4" v-if="products.length !== 0">
+        
         <b-col v-for="product in products" :key="product.id" lg="3" md="6" sm="6" class="my-3">
           <ProductCard v-bind="product"/>
+        </b-col>
+      </b-row>
+         <b-row class="mt-4" v-else>
+        <b-col class="text-center">
+          <h1>No product available </h1>
         </b-col>
       </b-row>
     </b-container>

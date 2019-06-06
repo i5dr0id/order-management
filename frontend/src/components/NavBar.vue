@@ -12,7 +12,10 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-
+<button type="button" class="btn btn-default text-white" aria-label="Left Align">
+  {{'0'}}
+ <span class="fa fa-shopping-cart fa-lg" aria-hidden="true"></span>
+ </button>
         <b-nav-item-dropdown right>
           <template slot="button-content"><em>{{getUserDetail.fullname}}</em></template>
           <!-- <b-dropdown-item href="#">Profile</b-dropdown-item> -->
