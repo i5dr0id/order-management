@@ -38,7 +38,6 @@ export default {
   methods: {
     ...mapActions('user', ['ASYNC_LOGIN_CUSTOMER_ACCOUNT']),
     handleSubmit() {
-      console.log(this.customerLoginForm);
       this.ASYNC_LOGIN_CUSTOMER_ACCOUNT(this.customerLoginForm).then((res) => {
         this.$router.push('/products');
       }).catch((err) => {

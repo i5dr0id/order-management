@@ -45,7 +45,6 @@ export default {
   methods: {
     ...mapActions('user', ['ASYNC_CREATE_CUSTOMER_ACCOUNT']),
     handleSubmit() {
-      console.log(this.customerRegisterForm);
       this.ASYNC_CREATE_CUSTOMER_ACCOUNT(this.customerRegisterForm)
         .then((res) => {
           this.$router.push('/products');

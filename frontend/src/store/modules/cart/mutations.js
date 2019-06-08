@@ -32,8 +32,5 @@ export default {
 };
 
 const findProduct = (state, item) => {
-  console.log({
-    state,
-  });
   return state.find(product => product.id === item.id);
 };
