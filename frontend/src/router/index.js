@@ -12,6 +12,7 @@ const AppBase = () => import('@/views/AppBase');
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     auth,
     about,

@@ -4,7 +4,7 @@
     <b-container>
 
       <b-row class="mt-4" v-if="products.length !== 0">
-        
+
         <b-col v-for="product in products" :key="product.id" lg="3" md="6" sm="6" class="my-3">
           <ProductCard v-bind="product"/>
         </b-col>
@@ -18,35 +18,35 @@
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
-import NavBar from "@/components/NavBar.vue";
-import ProductCard from "@/components/ProductCard";
+import { mapActions } from 'vuex';
+import NavBar from '@/components/NavBar.vue';
+import ProductCard from '@/components/ProductCard';
+
 export default {
-  name: "products",
+  name: 'products',
   data() {
     return {
-      products: []
+      products: [],
     };
   },
   components: {
     NavBar,
-    ProductCard
+    ProductCard,
   },
   methods: {
-    ...mapActions("products", ["ASYNC_GET_ALL_PRODUCTS"])
+    ...mapActions('products', ['ASYNC_GET_ALL_PRODUCTS']),
   },
   mounted() {
     this.ASYNC_GET_ALL_PRODUCTS()
-      .then(res => {
+      .then((res) => {
         this.products = res;
-
       })
-      .catch(error => {
+      .catch((error) => {
         console.log({
-          error
+          error,
         });
       });
-  }
+  },
 };
 </script>
 <style scoped>

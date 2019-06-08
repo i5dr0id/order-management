@@ -9,12 +9,12 @@
       </b-card-text>
     </b-card>
     <div class="product-item-overlay">
-      <div class="text"><strong> {{name}}</strong> </div>
-      <div class="text"> {{description}} </div>
+      <div class="text text-white"><strong> {{name}}</strong> </div>
+      <div class="text text-white"> {{description}} </div>
       <div class="text">
-          <strong>&#8358;{{Number(price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}</strong>
-         </div>
-<div>
+        <strong>&#8358;{{Number(price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}</strong>
+      </div>
+      <!-- <div>
   <span>QTY</span>
  <b-form-input
           v-model="quantity"
@@ -22,9 +22,16 @@
           min="1"
           max="10"
         ></b-form-input>
-</div>
+</div> -->
+      <div class="align-self-center">
+        <b-button size="sm" variant="outline-secondary text-white" :disabled="quantity <= 1"
+          @click="quantity--"> - </b-button>
+        <span class="text-white px-1"> {{ quantity }}</span>
+        <b-button size="sm" variant="outline-secondary text-white" @click="quantity++"> +
+        </b-button>
+      </div>
       <div class="mt-2">
-        <b-button>Add to Cart</b-button>
+        <b-button @click="addToCart">Add to Cart</b-button>
       </div>
     </div>
   </div>
@@ -37,15 +44,35 @@
       name: String,
       price: String,
       imageurl: String,
-      description: String
+      description: String,
     },
     data() {
       return {
         selected: null,
-        quantity: 0
+        quantity: 1,
       };
     },
-    methods: {}
+    methods: {
+      addToCart() {
+        // let item = {
+        //   id: this.id,
+        //   name: this.name,
+        //   price: this.price,
+        //   imageurl: this.imageurl,
+        //   description: this.description,
+        //   quantity: this.quantity,
+        // };
+        // console.log({ item });
+        this.$store.dispatch("cart/asyncPushToCart", {
+          id: this.id,
+          name: this.name,
+          price: this.price,
+          imageurl: this.imageurl,
+          description: this.description,
+          quantity: parseInt(this.quantity),
+        })
+      },
+    },
   };
 
 </script>
@@ -62,14 +89,16 @@
     -webkit-box-orient: vertical;
   }
 
- .trim-text-2 {
+  .trim-text-2 {
     -webkit-line-clamp: 1;
   }
+
   .trim-text-2 {
     -webkit-line-clamp: 2;
   }
+
   .card-title {
-        overflow: hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -96,6 +125,11 @@
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
+    /* opacity:0.5; */
+  }
+
+  .container:hover {
+    background: black
   }
 
   .container:hover>.card {
