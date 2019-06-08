@@ -14,7 +14,6 @@ export default {
     state.currentCart.forEach((item) => {
       total += (item.price * item.quantity);
     });
-    console.log('TOTAL::: ', total);
     return total;
   },
 };

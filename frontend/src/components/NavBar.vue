@@ -22,18 +22,21 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <b-modal id="modal-1" title="Cart">
+    <b-modal id="modal-1" title="Cart" hide-footer>
 <Cart />
+<b-button v-if="cartCount !== 0" class="mt-3" variant="outline-danger" block>Create Order</b-button>
   </b-modal>
   </div>
 </template>
 <script>
-  import {
+
+import Cart from '@/components/Cart.vue'
+
+import {
     mapGetters,
     mapActions
   } from 'vuex';
 
-import Cart from '@/components/Cart.vue'
 
   export default {
     name: 'navbar',

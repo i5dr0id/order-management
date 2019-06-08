@@ -11,6 +11,12 @@ import './registerServiceWorker';
 
 Vue.config.productionTip = false;
 
+Vue.filter('format_currency', (value) => {
+  if (!value) return '';
+  value = Number(value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+  return value;
+});
+
 new Vue({
   router,
   store,

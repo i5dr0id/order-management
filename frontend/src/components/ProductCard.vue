@@ -4,25 +4,16 @@
       <b-card-text>
         <span class="dark-grey-text trim-text trim-text-2" style>{{description}}</span>
         <h4 class="font-weight-bold blue-text">
-          <strong>&#8358;{{Number(price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}</strong>
+          <strong>&#8358;{{price | format_currency}}</strong>
         </h4>
       </b-card-text>
     </b-card>
     <div class="product-item-overlay">
       <div class="text text-white"><strong> {{name}}</strong> </div>
       <div class="text text-white"> {{description}} </div>
-      <div class="text">
-        <strong>&#8358;{{Number(price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}</strong>
+      <div class="text text-white">
+        <strong>&#8358;{{price | format_currency}}</strong>
       </div>
-      <!-- <div>
-  <span>QTY</span>
- <b-form-input
-          v-model="quantity"
-          type="number"
-          min="1"
-          max="10"
-        ></b-form-input>
-</div> -->
       <div class="align-self-center">
         <b-button size="sm" variant="outline-secondary text-white" :disabled="quantity <= 1"
           @click="quantity--"> - </b-button>
@@ -54,15 +45,6 @@
     },
     methods: {
       addToCart() {
-        // let item = {
-        //   id: this.id,
-        //   name: this.name,
-        //   price: this.price,
-        //   imageurl: this.imageurl,
-        //   description: this.description,
-        //   quantity: this.quantity,
-        // };
-        // console.log({ item });
         this.$store.dispatch("cart/asyncPushToCart", {
           id: this.id,
           name: this.name,
@@ -71,7 +53,15 @@
           description: this.description,
           quantity: parseInt(this.quantity),
         })
+        this.makeToast(this.name)
       },
+      makeToast(product) {
+        this.$bvToast.toast(`${product} added to cart`, {
+          title: `Product Added`,
+          variant: 'info',
+          // solid: true
+        })
+      }
     },
   };
 
