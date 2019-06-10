@@ -7,6 +7,7 @@ import shared from './modules/shared';
 import ui from './modules/ui';
 import products from './modules/products';
 import cart from './modules/cart';
+import orders from './modules/orders';
 
 const initState = {
   user: user.state,
@@ -14,6 +15,7 @@ const initState = {
   ui: ui.state,
   products: products.state,
   cart: cart.state,
+  orders: orders.state,
 };
 
 Vue.use(Vuex);
@@ -31,6 +33,7 @@ export default new Vuex.Store({
     user,
     products,
     cart,
+    orders,
   },
   // state: {},
   mutations: {

@@ -24,39 +24,43 @@
     </b-navbar>
     <b-modal id="modal-1" title="Cart" hide-footer>
 <Cart />
-<b-button v-if="cartCount !== 0" class="mt-3" variant="outline-danger" block>Create Order</b-button>
+<b-button v-if="cartCount !== 0" @click="btnCreateOrder" v-b-modal.modal-1 class="mt-3" variant="outline-danger" block>Create Order</b-button>
   </b-modal>
   </div>
 </template>
 <script>
 
-import Cart from '@/components/Cart.vue'
+import Cart from '@/components/Cart.vue';
 
 import {
-    mapGetters,
-    mapActions
-  } from 'vuex';
+  mapGetters,
+  mapActions,
+} from 'vuex';
 
 
-  export default {
-    name: 'navbar',
-    components: {
-Cart
+export default {
+  name: 'navbar',
+  components: {
+    Cart,
+  },
+  computed: {
+    ...mapGetters('user', ['getUserDetail']),
+    ...mapGetters('cart', {
+      cartCount: 'numberOfQuantity',
+    }),
+  },
+  methods: {
+    ...mapActions('user', ['ASYNC_LOGOUT_CUSTOMER_ACCOUNT']),
+    ...mapActions('orders', ['ASYNC_CREATE_CUSTOMER_ORDER']),
+    btnCreateOrder() {
+      this.ASYNC_CREATE_CUSTOMER_ORDER();
     },
-    computed: {
-      ...mapGetters('user', ['getUserDetail']),
-      ...mapGetters('cart', {
-        cartCount: 'numberOfQuantity'
-      })
+    btnLogout() {
+      this.ASYNC_LOGOUT_CUSTOMER_ACCOUNT();
+      this.$router.push('/');
     },
-    methods: {
-      ...mapActions('user', ['ASYNC_LOGOUT_CUSTOMER_ACCOUNT']),
-      btnLogout() {
-        this.ASYNC_LOGOUT_CUSTOMER_ACCOUNT();
-        this.$router.push('/');
-      }
-    }
-  };
+  },
+};
 
 </script>
 <style scoped></style>

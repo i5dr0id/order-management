@@ -7,8 +7,6 @@ module.exports = {
 
   create: async function (req, res) {
     try {
-
-
       const orderedProducts = req.body.products;
       let product;
       let products = [];
@@ -16,7 +14,7 @@ module.exports = {
       // get all products price and calculate total
       for (const _product of orderedProducts) {
         product = await Products.findOne().where({
-          id: _product.product_id,
+          id: _product.id,
           avaliable: true
         });
         products.push({
@@ -52,7 +50,7 @@ module.exports = {
       });
     } catch (error) {
 
-      return res.serverError(err);
+      return res.serverError(error);
     }
 
   }

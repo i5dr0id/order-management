@@ -33,7 +33,8 @@ module.exports.policies = {
   },
 
   'v1/OrderController': {
-    'create': 'isLoggedInCustomer'
+    'create': 'isLoggedInCustomer',
+    'index': 'isLoggedInCustomer'
   }
 
 };

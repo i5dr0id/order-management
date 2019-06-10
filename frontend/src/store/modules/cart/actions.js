@@ -24,7 +24,7 @@ export default {
     commit,
 
   }, {
-    index
+    index,
   }) => {
     commit('removeItem', index);
   },

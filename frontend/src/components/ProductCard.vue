@@ -28,42 +28,42 @@
   </div>
 </template>
 <script>
-  export default {
-    name: 'productCard',
-    props: {
-      id: String,
-      name: String,
-      price: String,
-      imageurl: String,
-      description: String,
+export default {
+  name: 'productCard',
+  props: {
+    id: String,
+    name: String,
+    price: String,
+    imageurl: String,
+    description: String,
+  },
+  data() {
+    return {
+      selected: null,
+      quantity: 1,
+    };
+  },
+  methods: {
+    addToCart() {
+      this.$store.dispatch('cart/asyncPushToCart', {
+        id: this.id,
+        name: this.name,
+        price: this.price,
+        imageurl: this.imageurl,
+        description: this.description,
+        quantity: parseInt(this.quantity),
+      });
+      this.makeToast(this.name);
     },
-    data() {
-      return {
-        selected: null,
-        quantity: 1,
-      };
+    makeToast(product) {
+      this.$bvToast.toast(`${product} added to cart`, {
+        title: 'Product Added',
+        variant: 'info',
+        // solid: true
+      });
     },
-    methods: {
-      addToCart() {
-        this.$store.dispatch("cart/asyncPushToCart", {
-          id: this.id,
-          name: this.name,
-          price: this.price,
-          imageurl: this.imageurl,
-          description: this.description,
-          quantity: parseInt(this.quantity),
-        })
-        this.makeToast(this.name)
-      },
-      makeToast(product) {
-        this.$bvToast.toast(`${product} added to cart`, {
-          title: `Product Added`,
-          variant: 'info',
-          // solid: true
-        })
-      }
-    },
-  };
+  },
+};
 
 </script>
 <style scoped>

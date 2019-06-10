@@ -22,10 +22,10 @@
               {{ item.quantity }}
               <b-button size="sm" variant="outline-secondary" @click="increaseQty(item)">+</b-button>
             </div>
-            <div>&#8358; {{ item.price * item.quantity | format_currency }}</div>
+            <div class="pt-1">&#8358; {{ item.price * item.quantity | format_currency }}</div>
 
             <div class="product-controls">
-              <span @click="removeItem({index,item})">Remove</span>
+              <b-button @click="removeItem({index,item})">Remove</b-button>
             </div>
           </b-col>
         </b-row>
@@ -45,38 +45,37 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters("cart", {
-      cartCount: "numberOfQuantity",
-      cartProducts: "productsInCart",
-      totalPrice: "cartTotalPrice"
-    })
+    ...mapGetters('cart', {
+      cartCount: 'numberOfQuantity',
+      cartProducts: 'productsInCart',
+      totalPrice: 'cartTotalPrice',
+    }),
   },
   methods: {
-        ...mapActions('cart', [
+    ...mapActions('cart', [
       'asyncIncreaseQty', 'asyncDecreaseQty',
-      'asyncRemoveItem'
+      'asyncRemoveItem',
     ]),
 
-        increaseQty (item) {
-      this.asyncIncreaseQty(item)
+    increaseQty(item) {
+      this.asyncIncreaseQty(item);
     },
 
-    decreaseQty (item) {
-      this.asyncDecreaseQty(item)
+    decreaseQty(item) {
+      this.asyncDecreaseQty(item);
     },
 
-    removeItem (item) {
-      this.asyncRemoveItem(item)
+    removeItem(item) {
+      this.asyncRemoveItem(item);
     },
 
-  }
+  },
 };
 </script>
 
 <style scoped>
 </style>
-

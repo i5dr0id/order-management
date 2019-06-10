@@ -31,6 +31,4 @@ export default {
   },
 };
 
-const findProduct = (state, item) => {
-  return state.find(product => product.id === item.id);
-};
+const findProduct = (state, item) => state.find(product => product.id === item.id);
