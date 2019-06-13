@@ -71,13 +71,12 @@ module.exports = {
         return res.badRequest({err: 'unauthorized'});
       }
 
-      const token = JWTService.issuer({userID: user.id}, '10 days');
+      user.token = JWTService.issuer({userID: user.id}, '10 days');
       delete user.password;
 
       return res.json({
         message: 'Admin Login successful',
         user,
-        token
       });
     } catch (err) {
       if (err.name === 'ValidationError') {
