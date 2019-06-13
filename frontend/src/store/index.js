@@ -8,6 +8,7 @@ import ui from './modules/ui';
 import products from './modules/products';
 import cart from './modules/cart';
 import orders from './modules/orders';
+import admin from './modules/admin';
 
 const initState = {
   user: user.state,
@@ -16,6 +17,7 @@ const initState = {
   products: products.state,
   cart: cart.state,
   orders: orders.state,
+  admin: admin.state,
 };
 
 Vue.use(Vuex);
@@ -23,7 +25,7 @@ Vue.use(Vuex);
 const vuexPersist = new VuexPersist({
   key: '__order_mgt',
   storage: window.localStorage,
-  modules: ['shared', 'user', 'ui', 'products', 'cart'],
+  modules: ['shared', 'user', 'ui', 'products', 'cart', 'admin'],
 });
 
 export default new Vuex.Store({
@@ -34,6 +36,7 @@ export default new Vuex.Store({
     products,
     cart,
     orders,
+    admin,
   },
   // state: {},
   mutations: {

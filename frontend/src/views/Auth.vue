@@ -5,12 +5,12 @@
       <div class="form-group">
         <label for="email"> Email: </label>
         <input type="text" v-model="customerLoginForm.email" class="form-control" id="email"
-          placeholder="email"> </input>
+          placeholder="email">
       </div>
       <div class="form-group">
         <label for="password"> Password: </label>
         <input type="password" v-model="customerLoginForm.password" class="form-control"
-          id="password" placeholder="password"> </input>
+          id="password" placeholder="password">
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary w-100">Login</button>
@@ -38,9 +38,11 @@ export default {
   methods: {
     ...mapActions('user', ['ASYNC_LOGIN_CUSTOMER_ACCOUNT']),
     handleSubmit() {
-      this.ASYNC_LOGIN_CUSTOMER_ACCOUNT(this.customerLoginForm).then((res) => {
+      this.ASYNC_LOGIN_CUSTOMER_ACCOUNT(this.customerLoginForm)
+      .then((res) => {
         this.$router.push('/products');
-      }).catch((err) => {
+      })
+      .catch((err) => {
         console.log({
           err,
         });
