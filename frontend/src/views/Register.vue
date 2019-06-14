@@ -4,19 +4,19 @@
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
         <label for="fullname"> Full name: </label>
-        <input type="text" v-model="customerRegisterForm.fullname" class="form-control" id="fullname" placeholder="full name"> </input>
+        <input type="text" v-model="customerRegisterForm.fullname" class="form-control" id="fullname" placeholder="full name">
       </div>
       <div class="form-group">
         <label for="phone"> Phone: </label>
-        <input type="text" v-model="customerRegisterForm.phone" class="form-control" id="phone" placeholder="phone"> </input>
+        <input type="text" v-model="customerRegisterForm.phone" class="form-control" id="phone" placeholder="phone">
       </div>
       <div class="form-group">
         <label for="email"> Email: </label>
-        <input type="email" v-model="customerRegisterForm.email" class="form-control" id="email" placeholder="email"> </input>
+        <input type="email" v-model="customerRegisterForm.email" class="form-control" id="email" placeholder="email">
       </div>
       <div class="form-group">
         <label for="password"> Password: </label>
-        <input type="password" v-model="customerRegisterForm.password" class="form-control" id="password" placeholder="password"> </input>
+        <input type="password" v-model="customerRegisterForm.password" class="form-control" id="password" placeholder="password">
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary w-100">Register</button>

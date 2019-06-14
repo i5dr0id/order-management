@@ -5,6 +5,7 @@ import about from './about';
 import error from './error';
 
 import products from './products';
+import admin from './admin';
 
 const AppBase = () => import('@/views/AppBase');
 
@@ -18,6 +19,7 @@ export default new Router({
     about,
     error,
     products,
+    admin,
     // {
     //   path: '/app',
     //   component: AppBase,

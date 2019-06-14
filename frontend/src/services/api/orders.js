@@ -1,4 +1,4 @@
-import AxiosOrderMgt from '../networkInterceptor';
+import CustomerInstance from '../networkInterceptor';
 
 import {
   HTTP_VERBS,
@@ -8,7 +8,7 @@ import {
 
 export default {
   async createCustomerOrder(payload, type = HTTP_VERBS.POST, url = CREATE_CUSTOMER_ORDER) {
-    const res = await AxiosOrderMgt[type](url, payload);
+    const res = await CustomerInstance[type](url, payload);
     return {
       status: res.status,
       data: res.data,
@@ -16,7 +16,7 @@ export default {
   },
 
   async getCustomerOrders(type = HTTP_VERBS.GET, url = GET_CUSTOMER_ORDERS) {
-    const res = await AxiosOrderMgt[type](url);
+    const res = await CustomerInstance[type](url);
     return {
       status: res.status,
       data: res.data,
