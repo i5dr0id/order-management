@@ -27,7 +27,7 @@ module.exports = {
       // Check if user exist
       const user = await Users.findOne({email});
       if (user) {
-        return res.json({
+        return res.status(409).json({
           status:'error',
           message: 'user already exist',
         })
@@ -44,6 +44,11 @@ module.exports = {
         password: encryptedPassword
       }).fetch();
 
+      delete admin.password
+
+      admin.token = JWTService.issuer({
+        customerID: admin.id
+      }, '10 days');
       // send response
       return res.json({
         message: 'Admin account created successfully',
@@ -69,24 +74,24 @@ module.exports = {
       });
 
       const {email, password} = await Joi.validate(req.allParams(), schema);
-      const user = await Users.findOne({email});
+      const admin = await Users.findOne({email});
 
-      if (!user) {
+      if (!admin) {
         return res.notFound({err: 'user does not exist'});
       }
 
-      const matchedPassword = await PasswordService.comparePassword(password, user.password);
+      const matchedPassword = await PasswordService.comparePassword(password, admin.password);
 
       if (!matchedPassword) {
         return res.badRequest({err: 'unauthorized'});
       }
 
-      user.token = JWTService.issuer({userID: user.id}, '10 days');
-      delete user.password;
+      admin.token = JWTService.issuer({userID: admin.id}, '10 days');
+      delete admin.password;
 
       return res.json({
         message: 'Admin Login successful',
-        user,
+        admin,
       });
     } catch (err) {
       if (err.name === 'ValidationError') {

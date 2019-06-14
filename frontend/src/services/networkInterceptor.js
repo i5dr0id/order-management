@@ -10,13 +10,6 @@ import {
 
 Vue.use(VueAxios, axios);
 
-// const token = store.getters['user/getUserToken'];
-// const token = mapState('user', ['token']);
-// const token = localStorage.getItem('__token');
-
-// console.log('NAHHHHHH');
-
-
 const BASE_URL = envUrls.development;
 
 const headers = new Headers();

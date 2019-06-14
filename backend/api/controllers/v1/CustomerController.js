@@ -37,7 +37,7 @@ module.exports = {
         email
       });
       if (user) {
-        return res.json({
+        return res.status(409).json({
           status: 'error',
           message: 'user already exist',
         })

@@ -1,11 +1,27 @@
 <template>
   <b-form @submit.stop.prevent="onSubmit">
+    <b-form-group
+      id="example-input-group-fullname"
+      label="Fullname"
+      label-for="example-input-fullname"
+    >
+      <b-form-input
+        id="fullname"
+        name="fullname"
+        v-model="$v.adminRegistrationForm.name.$model"
+        :state="$v.adminRegistrationForm.name.$dirty ? !$v.adminRegistrationForm.name.$error : null"
+        aria-describedby="input-email-live-feedback"
+      ></b-form-input>
+
+      <b-form-invalid-feedback id="input-fullname-live-feedback">name field is required.</b-form-invalid-feedback>
+    </b-form-group>
+
     <b-form-group id="example-input-group-email" label="Email" label-for="example-input-email">
       <b-form-input
         id="email"
         name="email"
-        v-model="$v.adminLoginForm.email.$model"
-        :state="$v.adminLoginForm.email.$dirty ? !$v.adminLoginForm.email.$error : null"
+        v-model="$v.adminRegistrationForm.email.$model"
+        :state="$v.adminRegistrationForm.email.$dirty ? !$v.adminRegistrationForm.email.$error : null"
         aria-describedby="input-email-live-feedback"
       ></b-form-input>
 
@@ -21,8 +37,8 @@
         type="password"
         id="password"
         name="password"
-        v-model="$v.adminLoginForm.password.$model"
-        :state="$v.adminLoginForm.password.$dirty ? !$v.adminLoginForm.password.$error : null"
+        v-model="$v.adminRegistrationForm.password.$model"
+        :state="$v.adminRegistrationForm.password.$dirty ? !$v.adminRegistrationForm.password.$error : null"
         aria-describedby="input-password-live-feedback"
       ></b-form-input>
 
@@ -35,8 +51,8 @@
       type="submit"
       variant="primary"
       class="w-100"
-      :disabled="$v.adminLoginForm.$invalid"
-    >Login</b-button>
+      :disabled="$v.adminRegistrationForm.$invalid"
+    >Create Admin</b-button>
   </b-form>
 </template>
 
@@ -50,14 +66,18 @@ export default {
   mixins: [validationMixin],
   data() {
     return {
-      adminLoginForm: {
+      adminRegistrationForm: {
+        name: null,
         email: null,
         password: null
       }
     };
   },
   validations: {
-    adminLoginForm: {
+    adminRegistrationForm: {
+      name: {
+        required
+      },
       email: {
         required,
         email
@@ -69,19 +89,24 @@ export default {
     }
   },
   methods: {
-    ...mapActions("admin", ["ASYNC_LOGIN_ADMIN_ACCOUNT"]),
+    ...mapActions("admin", ["ASYNC_CREATE_ADMIN_ACCOUNT"]),
     onSubmit() {
-      this.$v.adminLoginForm.$touch();
-      if (this.$v.adminLoginForm.$anyError) {
+      this.$v.adminRegistrationForm.$touch();
+      if (this.$v.adminRegistrationForm.$anyError) {
         return;
       }
-      this.ASYNC_LOGIN_ADMIN_ACCOUNT(this.adminLoginForm)
+      this.ASYNC_CREATE_ADMIN_ACCOUNT(this.adminRegistrationForm)
         .then(res => {
-          if (res) {
+          if (res === 200) {
             this.$router.push("/dashboard");
             this.$bvToast.toast("Admin login successfully", {
               title: "Admin Login",
               variant: "success"
+            });
+          } else {
+            this.$bvToast.toast("Username or password incorrect", {
+              title: "Failed Login",
+              variant: "danger"
             });
           }
         })
@@ -90,7 +115,6 @@ export default {
             title: "Failed Login",
             variant: "danger"
           });
-          console.log({ err });
         });
     }
   }

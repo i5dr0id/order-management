@@ -1,4 +1,4 @@
-import CustomerInstance from '../networkInterceptor';
+import {CustomerInstance} from '../networkInterceptor';
 
 import {
   HTTP_VERBS,

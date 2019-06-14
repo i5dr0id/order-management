@@ -69,28 +69,25 @@ export default {
     }
   },
   methods: {
-    ...mapActions("admin", ["ASYNC_LOGIN_ADMIN_ACCOUNT"]),
+    ...mapActions("user", ["ASYNC_LOGIN_CUSTOMER_ACCOUNT"]),
     onSubmit() {
       this.$v.adminLoginForm.$touch();
       if (this.$v.adminLoginForm.$anyError) {
         return;
       }
-      this.ASYNC_LOGIN_ADMIN_ACCOUNT(this.adminLoginForm)
+      this.ASYNC_LOGIN_CUSTOMER_ACCOUNT(this.adminLoginForm)
         .then(res => {
-          if (res) {
-            this.$router.push("/dashboard");
-            this.$bvToast.toast("Admin login successfully", {
-              title: "Admin Login",
-              variant: "success"
-            });
+          if (res === 200) {
+            this.$router.push("/products");
           }
         })
         .catch(err => {
-          this.$bvToast.toast("Username or password incorrect", {
-            title: "Failed Login",
-            variant: "danger"
-          });
-          console.log({ err });
+          if (err) {
+            this.$bvToast.toast("Username or password incorrect", {
+              title: "Failed Login",
+              variant: "danger"
+            });
+          }
         });
     }
   }

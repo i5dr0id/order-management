@@ -1,7 +1,6 @@
 const Auth = () => import('@/views/Auth');
 const Register = () => import('@/views/Register');
 const HomeBase = () => import('@/views/HomeBase');
-const Admin = () => import('@/views/Admin');
 
 export default {
   path: '/',
