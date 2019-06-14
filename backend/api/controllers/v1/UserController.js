@@ -24,6 +24,16 @@ module.exports = {
       // validate values from request body
       const { name, email, password} = await Joi.validate(req.allParams(), schema);
 
+      // Check if user exist
+      const user = await Users.findOne({email});
+      if (user) {
+        return res.json({
+          status:'error',
+          message: 'user already exist',
+        })
+      }
+
+
       // hash password
       const encryptedPassword = await PasswordService.hashPassword(password);
 

@@ -19,7 +19,11 @@ export default {
   }, item) => {
     commit('decrease', item);
   },
-
+  asynClearCart: ({
+    commit,
+  }) => {
+    commit('clearCart');
+  },
   asyncRemoveItem: ({
     commit,
 

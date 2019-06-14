@@ -61,7 +61,7 @@ export default {
       'asyncRemoveItem',
     ]),
 
-    increaseQty(item) {
+      increaseQty(item) {
       this.asyncIncreaseQty(item);
     },
 

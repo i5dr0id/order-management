@@ -13,6 +13,7 @@ module.exports = {
    * `CustomerController.register()`
    */
   register: async function (req, res) {
+    console.log("CALLEDR")
     try {
       // validation schema
       const schema = Joi.object().keys({
@@ -24,7 +25,23 @@ module.exports = {
       });
 
       // validate values from request body
-      const { fullname, email, password, phone} = await Joi.validate(req.allParams(), schema);
+      const {
+        fullname,
+        email,
+        password,
+        phone
+      } = await Joi.validate(req.allParams(), schema);
+
+      // Check if Customers exist
+      const user = await Customers.findOne({
+        email
+      });
+      if (user) {
+        return res.json({
+          status: 'error',
+          message: 'user already exist',
+        })
+      }
 
       // hash password
       const encryptedPassword = await PasswordService.hashPassword(password);
@@ -40,7 +57,9 @@ module.exports = {
       //remove password
       delete customer.password
 
-      customer.token = JWTService.issuer({customerID: customer.id}, '10 days');
+      customer.token = JWTService.issuer({
+        customerID: customer.id
+      }, '10 days');
 
 
       // send response
@@ -62,26 +81,39 @@ module.exports = {
    * `CustomerController.login()`
    */
   login: async function (req, res) {
+    console.log(req.allParams())
     try {
       const schema = Joi.object().keys({
         email: Joi.string().required().email(),
         password: Joi.string().required()
       });
 
-      const {email, password} = await Joi.validate(req.allParams(), schema);
-      const customer = await Customers.findOne({email});
+      const {
+        email,
+        password
+      } = await Joi.validate(req.allParams(), schema);
+      const customer = await Customers.findOne({
+        email
+      });
 
       if (!customer) {
-        return res.notFound({err: 'customer does not exist'});
+        console.log("customer does not exist")
+        return res.notFound({
+          err: 'customer does not exist'
+        });
       }
 
       const matchedPassword = await PasswordService.comparePassword(password, customer.password);
 
       if (!matchedPassword) {
-        return res.badRequest({err: 'unauthorized'});
+        return res.badRequest({
+          err: 'unauthorized'
+        });
       }
 
-      customer.token = JWTService.issuer({customerID: customer.id}, '10 days');
+      customer.token = JWTService.issuer({
+        customerID: customer.id
+      }, '10 days');
       delete customer.password;
 
       return res.json({
@@ -90,7 +122,9 @@ module.exports = {
       });
     } catch (err) {
       if (err.name === 'ValidationError') {
-        return res.badRequest({err});
+        return res.badRequest({
+          err
+        });
       }
       return res.serverError(err);
 

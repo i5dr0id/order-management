@@ -22,7 +22,7 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <b-modal id="modal-1" title="Cart" hide-footer>
+    <b-modal ref="cart-modal" id="modal-1" title="Cart" hide-footer>
 <Cart />
 <b-button v-if="cartCount !== 0" @click="btnCreateOrder" v-b-modal.modal-1 class="mt-3" variant="outline-danger" block>Create Order</b-button>
   </b-modal>
@@ -52,8 +52,18 @@ export default {
   methods: {
     ...mapActions('user', ['ASYNC_LOGOUT_CUSTOMER_ACCOUNT']),
     ...mapActions('orders', ['ASYNC_CREATE_CUSTOMER_ORDER']),
+    ...mapActions('cart',['asynClearCart']),
     btnCreateOrder() {
-      this.ASYNC_CREATE_CUSTOMER_ORDER();
+      this.ASYNC_CREATE_CUSTOMER_ORDER().then(res => {
+        if (res) {
+this.asynClearCart()
+this.$refs['cart-modal'].hide()
+     this.$bvToast.toast(`Order successfully Logged `, {
+        title: 'Product Order',
+        variant: 'success',
+      });
+        }
+      })
     },
     btnLogout() {
       this.ASYNC_LOGOUT_CUSTOMER_ACCOUNT();

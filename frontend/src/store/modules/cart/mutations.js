@@ -29,6 +29,9 @@ export default {
     state.currentCart.splice(index, 1);
     // state.currentCart.slice(index, 1)
   },
+  clearCart: (state, index) => {
+    state.currentCart = []
+  }
 };
 
 const findProduct = (state, item) => state.find(product => product.id === item.id);
